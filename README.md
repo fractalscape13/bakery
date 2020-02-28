@@ -21,11 +21,11 @@ _Lets a user order bread and pastries and see the total order cost._
 
 | Behavior       | Input    | Output     |
 | :------------- | :----------: | -----------: |
-| Collect user input for names and assign X or O to each name |
-| Take user click to create X or O | Example: user click on table cell | Return: X |
-| Show when a user has 3 in a row | Example: X X X | Return: Player 1 wins! |
-| Show when there is a tie game | Example: XOXOXO | Return: Tie game! |
-| Allow users to play again | Example: Click to play again | Return: Refresh screen |
+| Collect user input for  |
+| Take user click to create  | Example: | Return:  |
+| Show  | Example:  | Return:  |
+| Show  | Example:  | Return:  |
+| Allow  | Example:  | Return:  |
 
 
 ## Known Bugs
