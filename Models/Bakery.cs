@@ -19,9 +19,48 @@ namespace Bakery.Models
     
     public class Bread
     {
-      public static void ChooseBread()
+      public int Cost { get; set; }
+      public int Quantity { get; set; }
+      
+      public Bread()
       {
-        TypeLine("Yooo, time for bread y'all");
+        Cost = 0;
+        Quantity = 0;
+      }
+      public static void BreadCost()
+      {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Products.Bread newBreadOrder = new Products.Bread();
+        TypeLine("Bread is $5 per loaf, or for multiple loaves it is buy 2, get 1 free." + Environment.NewLine);
+        TypeLine("How many loaves of bread would you like to purchase?" + Environment.NewLine);
+        TypeLine("A free loaf will be added to every 2 loaves purchased (please enter a whole number):" + Environment.NewLine);
+        int quantity = int.Parse(Console.ReadLine());
+        if (quantity == 1)
+        {
+          newBreadOrder.Cost = 5;
+          TypeLine("The cost for " + newBreadOrder.Quantity + " loaf is $" + newBreadOrder.Cost);
+        }
+        else if (quantity > 1 && quantity % 2 == 0)
+        {
+          newBreadOrder.Cost = (quantity * 5);
+          newBreadOrder.Quantity = quantity + (quantity / 2);
+          TypeLine("The cost for " + newBreadOrder.Quantity + " loaves is $" + newBreadOrder.Cost);
+          TypeLine("(You are paying for " + quantity + " and getting " + (quantity / 2) + " for free)");
+
+        }
+        else if (quantity > 1 && quantity % 2 != 0)
+        {
+          newBreadOrder.Cost = (quantity * 5);
+          newBreadOrder.Quantity = quantity + ((quantity - 1) / 2);
+          TypeLine("The cost for " + newBreadOrder.Quantity + " loaves is $" + newBreadOrder.Cost);
+          TypeLine("(You are paying for " + quantity + " and getting " + ((quantity - 1) / 2) + " for free)");
+
+        }
+        else
+        {
+          BreadCost();
+        }
       }
     }
 
