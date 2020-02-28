@@ -10,9 +10,9 @@ namespace Bakery.Models
     {
       Console.Clear();
       Console.ForegroundColor = ConsoleColor.DarkYellow;
-      TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️" + Environment.NewLine);
+      TypeLineFast("▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫ ▫️" + Environment.NewLine);
       TypeLine("Hello and welcome to le Bakery de Pierre!" + Environment.NewLine);
-      TypeLine("Bread or Pastry today?" + Environment.NewLine);
+      TypeLine("Bread or Pastry today? (enter bread or pastry)" + Environment.NewLine);
       string response = Console.ReadLine();
       return response;
     }
@@ -32,6 +32,7 @@ namespace Bakery.Models
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
         Products.Bread newBreadOrder = new Products.Bread();
+        TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️" + Environment.NewLine);
         TypeLine("Bread is $5 per loaf, or for multiple loaves it is buy 2, get 1 free." + Environment.NewLine);
         TypeLine("How many loaves of bread would you like to purchase?" + Environment.NewLine);
         TypeLine("A free loaf will be added to every 2 loaves purchased (please enter a whole number):" + Environment.NewLine);
@@ -39,26 +40,35 @@ namespace Bakery.Models
         if (quantity == 1)
         {
           newBreadOrder.Cost = 5;
+          newBreadOrder.Quantity = quantity;
+          Console.Clear();
           TypeLine("The cost for " + newBreadOrder.Quantity + " loaf is $" + newBreadOrder.Cost);
         }
         else if (quantity > 1 && quantity % 2 == 0)
         {
           newBreadOrder.Cost = (quantity * 5);
           newBreadOrder.Quantity = quantity + (quantity / 2);
-          TypeLine("The cost for " + newBreadOrder.Quantity + " loaves is $" + newBreadOrder.Cost);
-          TypeLine("(You are paying for " + quantity + " and getting " + (quantity / 2) + " for free)");
+          Console.Clear();
+          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️" + Environment.NewLine);
+          TypeLine("The cost for " + newBreadOrder.Quantity + " loaves is $" + newBreadOrder.Cost + Environment.NewLine);
+          TypeLine("(You are paying for " + quantity + " loaves and getting " + (quantity / 2) + " for free)" + Environment.NewLine);
+          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️" + Environment.NewLine);
 
         }
         else if (quantity > 1 && quantity % 2 != 0)
         {
           newBreadOrder.Cost = (quantity * 5);
           newBreadOrder.Quantity = quantity + ((quantity - 1) / 2);
-          TypeLine("The cost for " + newBreadOrder.Quantity + " loaves is $" + newBreadOrder.Cost);
-          TypeLine("(You are paying for " + quantity + " and getting " + ((quantity - 1) / 2) + " for free)");
+          Console.Clear();
+          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️" + Environment.NewLine);
+          TypeLine("The cost for " + newBreadOrder.Quantity + " loaves is $" + newBreadOrder.Cost + Environment.NewLine);
+          TypeLine("(You are paying for " + quantity + " loaves and getting " + ((quantity - 1) / 2) + " for free!)" + Environment.NewLine);
+          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️" + Environment.NewLine);
 
         }
         else
         {
+          TypeLine("Sorry, we didn't catch that");
           BreadCost();
         }
       }
