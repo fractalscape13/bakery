@@ -119,9 +119,79 @@ namespace Bakery.Models
 
     public class Pastry
     {
-      public static void PastryOrder()
+      public int Cost { get; set; }
+      public int Quantity { get; set; }
+      
+      public Pastry()
       {
-        TypeLine("Pastries then!");
+        Cost = 0;
+        Quantity = 0;
+      }
+      public static string PastryOrder()
+      {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.White;
+        Products.Pastry newPastryOrder = new Products.Pastry();
+        TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
+        TypeLine("Pastries are $5 per loaf, & for multiple it is buy 2, get 1 free.");
+        TypeLine("How many pastries would you like to purchase?");
+        TypeLine("A free pastry will be added to every 2 purchased (please enter a whole number):");
+        int quantity = int.Parse(Console.ReadLine());
+        if (quantity == 1)
+        {
+          newPastryOrder.Cost = 5;
+          newPastryOrder.Quantity = quantity;
+          Console.Clear();
+          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
+          Console.ForegroundColor = ConsoleColor.Green;
+          TypeLine("The cost for " + newPastryOrder.Quantity + " loaf is $" + newPastryOrder.Cost);
+          Program.totalCost += newPastryOrder.Cost;
+          return newPastryOrder.FinalPastryOrder();
+        }
+        else if (quantity > 1 && quantity % 2 == 0)
+        {
+          newPastryOrder.Cost = (quantity * 5);
+          newPastryOrder.Quantity = quantity + (quantity / 2);
+          Console.Clear();
+          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
+          Console.ForegroundColor = ConsoleColor.Green;
+          TypeLine("The cost for " + newPastryOrder.Quantity + " loaves is $" + newPastryOrder.Cost);
+          TypeLine("(You are paying for " + quantity + " loaves and getting " + (quantity / 2) + " for free)");
+          Program.totalCost += newPastryOrder.Cost;
+          return newPastryOrder.FinalPastryOrder();
+        }
+        else if (quantity > 1 && quantity % 2 != 0)
+        {
+          newPastryOrder.Cost = (quantity * 5);
+          newPastryOrder.Quantity = quantity + ((quantity - 1) / 2);
+          Console.Clear();
+          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
+          Console.ForegroundColor = ConsoleColor.Green;
+          TypeLine("The cost for " + newPastryOrder.Quantity + " loaves is $" + newPastryOrder.Cost);
+          TypeLine("(You are paying for " + quantity + " loaves and getting " + ((quantity - 1) / 2) + " for free!)");
+          Program.totalCost += newPastryOrder.Cost;
+          return newPastryOrder.FinalPastryOrder();
+        }
+        else
+        {
+          return "Sorry, we didn't catch that...";
+        }      
+      }
+      public string FinalPastryOrder()
+      {
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        if (Quantity > 1)
+        {
+          return Quantity + " pastries with a cost of $" + Cost;
+        }
+        else if (Quantity == 1)
+        {
+            return Quantity + " pastry with a cost of $" + Cost;
+        }
+        else
+        {
+          return "You didn't order anything";
+        }
       }
     }
   }

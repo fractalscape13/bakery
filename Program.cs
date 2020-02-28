@@ -18,11 +18,12 @@ namespace Bakery
         allOrders.Add(finalBreadOrder);
         NextStep();
       }
-      // else if (response == "pastry" || response == "Pastry")
-      // {
-      //   string finalPastryOrder = Products.Pastry.PastryOrder();
-      //   FinalOrder(finalPastryOrder);
-      // }
+      else if (response == "pastry" || response == "Pastry")
+      {
+        string finalPastryOrder = Products.Pastry.PastryOrder();
+        allOrders.Add(finalPastryOrder);
+        NextStep();
+      }
       else 
       {
         Console.Clear();
@@ -57,12 +58,12 @@ namespace Bakery
           allOrders.Add(finalBreadOrder);
           NextStep();
         }
-        // else if (nextOrder == "pastry" || nextOrder == "Pastry")
-        // {
-        //   string finalPastryOrder = Products.Pastry.PastryOrder();
-        //   allOrders.Add(finalPastryOrder);
-        //   NextStep();
-        // }
+        else if (nextOrder == "pastry" || nextOrder == "Pastry")
+        {
+          string finalPastryOrder = Products.Pastry.PastryOrder();
+          allOrders.Add(finalPastryOrder);
+          NextStep();
+        }
       }
       else
       {
@@ -71,10 +72,6 @@ namespace Bakery
         System.Threading.Thread.Sleep(4000);
         NextStep();
       }
-    }
-    public static void AddOrder()
-    {
-      Products.TypeLine("Would you like to checkou");
     }
 
     public static void FinalOrder()
