@@ -133,9 +133,8 @@ namespace Bakery.Models
         Console.ForegroundColor = ConsoleColor.White;
         Products.Pastry newPastryOrder = new Products.Pastry();
         TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
-        TypeLine("Pastries are $5 per loaf, & for multiple it is buy 2, get 1 free.");
-        TypeLine("How many pastries would you like to purchase?");
-        TypeLine("A free pastry will be added to every 2 purchased (please enter a whole number):");
+        TypeLine("Pastries are $2 each, or get 3 for $5");
+        TypeLine("How many total pastries would you like? (please enter a whole number)");
         int quantity = int.Parse(Console.ReadLine());
         if (quantity == 1)
         {
@@ -144,7 +143,7 @@ namespace Bakery.Models
           Console.Clear();
           TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
           Console.ForegroundColor = ConsoleColor.Green;
-          TypeLine("The cost for " + newPastryOrder.Quantity + " loaf is $" + newPastryOrder.Cost);
+          TypeLine("The cost for " + newPastryOrder.Quantity + " pastry is $" + newPastryOrder.Cost);
           Program.totalCost += newPastryOrder.Cost;
           return newPastryOrder.FinalPastryOrder();
         }
@@ -155,8 +154,7 @@ namespace Bakery.Models
           Console.Clear();
           TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
           Console.ForegroundColor = ConsoleColor.Green;
-          TypeLine("The cost for " + newPastryOrder.Quantity + " loaves is $" + newPastryOrder.Cost);
-          TypeLine("(You are paying for " + quantity + " loaves and getting " + (quantity / 2) + " for free)");
+          TypeLine("The cost for " + newPastryOrder.Quantity + " pastries is $" + newPastryOrder.Cost);
           Program.totalCost += newPastryOrder.Cost;
           return newPastryOrder.FinalPastryOrder();
         }
@@ -167,8 +165,7 @@ namespace Bakery.Models
           Console.Clear();
           TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
           Console.ForegroundColor = ConsoleColor.Green;
-          TypeLine("The cost for " + newPastryOrder.Quantity + " loaves is $" + newPastryOrder.Cost);
-          TypeLine("(You are paying for " + quantity + " loaves and getting " + ((quantity - 1) / 2) + " for free!)");
+          TypeLine("The cost for " + newPastryOrder.Quantity + " pastries is $" + newPastryOrder.Cost);
           Program.totalCost += newPastryOrder.Cost;
           return newPastryOrder.FinalPastryOrder();
         }
