@@ -7,19 +7,24 @@ namespace Bakery
 {
   public class Program
   {
+    public static string finalBreadOrder;
+    public static string finalPastryOrder;
+    public static int totalCost = 0;
+    public static List<string> allOrders = new List<string>(){};
     public static void Main()
     {
       string response = Products.Welcome();
       if (response == "bread" || response == "Bread")
       {
-        string finalOrder = Products.Bread.BreadOrder();
-        Products.TypeLine(finalOrder);
+        string finalBreadOrder = Products.Bread.BreadOrder();
+        allOrders.Add(finalBreadOrder);
+        NextStep();
       }
-      else if (response == "pastry" || response == "Pastry")
-      {
-        Products.Pastry newPastryOrder = new Products.Pastry();
-        Products.Pastry.PastryOrder();
-      }
+      // else if (response == "pastry" || response == "Pastry")
+      // {
+      //   string finalPastryOrder = Products.Pastry.PastryOrder();
+      //   FinalOrder(finalPastryOrder);
+      // }
       else 
       {
         Console.Clear();
@@ -31,6 +36,46 @@ namespace Bakery
           Main();
         }
       }
+    }
+
+      public static void NextStep()
+    {
+      Console.ForegroundColor = ConsoleColor.Cyan;
+      Products.TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
+      Products.TypeLine("Would you like to proceed to checkout or add something else to your order? (choose checkout or add)");
+      string nextStep = Console.ReadLine();
+      if (nextStep == "checkout" || nextStep == "Checkout")
+      {
+        FinalOrder();
+      }
+      else if (nextStep == "add" || nextStep == "Add")
+      {
+        ;
+      }
+      else
+      {
+        Console.Clear();
+        Products.TypeLine("Something went wrong...");
+        System.Threading.Thread.Sleep(4000);
+        NextStep();
+      }
+    }
+    public static void AddOrder()
+    {
+      Products.TypeLine("Would you like to checkou");
+    }
+
+    public static void FinalOrder()
+    {
+      Console.Clear();
+      Console.ForegroundColor = ConsoleColor.Green;
+      Products.TypeLine("Your final order is:");
+      foreach(string order in allOrders)
+      {
+        Products.TypeLine(order);
+      }
+      string totalStr = totalCost.ToString();
+      Products.TypeLine(totalStr);
     }
   }
 }
