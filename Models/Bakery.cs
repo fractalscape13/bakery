@@ -130,7 +130,7 @@ namespace Bakery.Models
       public static string PastryOrder()
       {
         Console.Clear();
-        Console.ForegroundColor = ConsoleColor.White;
+        Console.ForegroundColor = ConsoleColor.Magenta;
         Products.Pastry newPastryOrder = new Products.Pastry();
         TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
         TypeLine("Pastries are $2 each, or get 3 for $5");
@@ -138,7 +138,7 @@ namespace Bakery.Models
         int quantity = int.Parse(Console.ReadLine());
         if (quantity == 1)
         {
-          newPastryOrder.Cost = 5;
+          newPastryOrder.Cost = 2;
           newPastryOrder.Quantity = quantity;
           Console.Clear();
           TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
@@ -147,21 +147,11 @@ namespace Bakery.Models
           Program.totalCost += newPastryOrder.Cost;
           return newPastryOrder.FinalPastryOrder();
         }
-        else if (quantity > 1 && quantity % 2 == 0)
+        else if (quantity > 1)
         {
-          newPastryOrder.Cost = (quantity * 5);
-          newPastryOrder.Quantity = quantity + (quantity / 2);
-          Console.Clear();
-          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
-          Console.ForegroundColor = ConsoleColor.Green;
-          TypeLine("The cost for " + newPastryOrder.Quantity + " pastries is $" + newPastryOrder.Cost);
-          Program.totalCost += newPastryOrder.Cost;
-          return newPastryOrder.FinalPastryOrder();
-        }
-        else if (quantity > 1 && quantity % 2 != 0)
-        {
-          newPastryOrder.Cost = (quantity * 5);
-          newPastryOrder.Quantity = quantity + ((quantity - 1) / 2);
+          int divisor = quantity / 3;
+          newPastryOrder.Cost = (quantity * 2) - divisor;
+          newPastryOrder.Quantity = quantity;
           Console.Clear();
           TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
           Console.ForegroundColor = ConsoleColor.Green;
