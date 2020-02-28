@@ -12,18 +12,18 @@ namespace Bakery
       string response = Products.Welcome();
       if (response == "bread" || response == "Bread")
       {
-        Products.Bread.BreadCost();
+        Products.Bread.BreadOrder();
       }
       else if (response == "pastry" || response == "Pastry")
       {
         Products.Pastry newPastryOrder = new Products.Pastry();
-        Products.Pastry.ChoosePastry();
+        Products.Pastry.PastryOrder();
       }
       else 
       {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Red;
-        Products.TypeLine("We didn't catch that, sorry! Try again? (press any key & enter to continue)");
+        Products.TypeLine("We didn't catch that, sorry! Try again? (press enter to continue)");
         string tryAgain = Console.ReadLine();
         if (tryAgain != null)
         {
