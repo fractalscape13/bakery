@@ -22,7 +22,7 @@ namespace Bakery.Models
       for (int i = 0; i < input.Length; i++)
       {
         Console.Write(input[i]);
-        System.Threading.Thread.Sleep(5);
+        System.Threading.Thread.Sleep(25);
       }
       Console.Write(Environment.NewLine);
       Console.Write(Environment.NewLine);

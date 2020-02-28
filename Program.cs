@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Bakery.Models;
 using System.Threading;
+using Bakery.Models;
 
 namespace Bakery
 {
@@ -83,6 +83,8 @@ namespace Bakery
     public static void FinalOrder()
     {
       Console.Clear();
+      Console.ForegroundColor = ConsoleColor.Magenta;
+      Products.TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
       Console.ForegroundColor = ConsoleColor.Green;
       Products.TypeLine("Your final order is:");
       foreach(string order in allOrders)
@@ -92,6 +94,7 @@ namespace Bakery
       string totalStr = totalCost.ToString();
       Console.ForegroundColor = ConsoleColor.Magenta;
       Products.TypeLine("Your order total is: $" + totalStr);
+      Products.TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
     }
   }
 }
