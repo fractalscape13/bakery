@@ -12,7 +12,8 @@ namespace Bakery
       string response = Products.Welcome();
       if (response == "bread" || response == "Bread")
       {
-        Products.Bread.BreadOrder();
+        string finalOrder = Products.Bread.BreadOrder();
+        Products.TypeLine(finalOrder);
       }
       else if (response == "pastry" || response == "Pastry")
       {

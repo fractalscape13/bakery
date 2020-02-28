@@ -11,10 +11,31 @@ namespace Bakery.Models
       Console.Clear();
       Console.ForegroundColor = ConsoleColor.DarkYellow;
       TypeLineFast("▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫ ▫️");
-      TypeLine("Hello and welcome to le Bakery de Pierre!");
+      TypeLine("Bonjour et Bienvenue au Boulangerie de Pierre!");
       TypeLine("Bread or Pastry today? (enter bread or pastry)");
       string response = Console.ReadLine();
       return response;
+    }
+
+    public static void TypeLine(string input)
+    {
+      for (int i = 0; i < input.Length; i++)
+      {
+        Console.Write(input[i]);
+        System.Threading.Thread.Sleep(30);
+      }
+      Console.Write(Environment.NewLine);
+      Console.Write(Environment.NewLine);
+    }
+    public static void TypeLineFast(string input)
+    {
+      for (int i = 0; i < input.Length; i++)
+      {
+        Console.Write(input[i]);
+        System.Threading.Thread.Sleep(5);
+      }
+      Console.Write(Environment.NewLine);
+      Console.Write(Environment.NewLine);
     }
     
     public class Bread
@@ -27,7 +48,7 @@ namespace Bakery.Models
         Cost = 0;
         Quantity = 0;
       }
-      public static void BreadOrder()
+      public static string BreadOrder()
       {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -37,7 +58,6 @@ namespace Bakery.Models
         TypeLine("How many loaves of bread would you like to purchase?");
         TypeLine("A free loaf will be added to every 2 loaves purchased (please enter a whole number):");
         int quantity = int.Parse(Console.ReadLine());
-        
         if (quantity == 1)
         {
           newBreadOrder.Cost = 5;
@@ -46,18 +66,7 @@ namespace Bakery.Models
           TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
           Console.ForegroundColor = ConsoleColor.Green;
           TypeLine("The cost for " + newBreadOrder.Quantity + " loaf is $" + newBreadOrder.Cost);
-          Console.ForegroundColor = ConsoleColor.Cyan;
-          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
-          TypeLine("Would you like to proceed to checkout or add pastries to your order? (choose checkout or add)");
-          string nextStep = Console.ReadLine();
-          if (nextStep == "checkout" || nextStep == "Checkout")
-          {
-            newBreadOrder.FinalBreadOrder();
-          }
-          else if (nextStep == "add" || nextStep == "Add")
-          {
-
-          }
+          return newBreadOrder.NextStep();
         }
         else if (quantity > 1 && quantity % 2 == 0)
         {
@@ -68,19 +77,7 @@ namespace Bakery.Models
           Console.ForegroundColor = ConsoleColor.Green;
           TypeLine("The cost for " + newBreadOrder.Quantity + " loaves is $" + newBreadOrder.Cost);
           TypeLine("(You are paying for " + quantity + " loaves and getting " + (quantity / 2) + " for free)");
-          Console.ForegroundColor = ConsoleColor.Cyan;
-          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
-          TypeLine("Would you like to proceed to checkout or add pastries to your order? (choose checkout or add)");
-          string nextStep = Console.ReadLine();
-          if (nextStep == "checkout" || nextStep == "Checkout")
-          {
-            newBreadOrder.FinalBreadOrder();
-          }
-          else if (nextStep == "add" || nextStep == "Add")
-          {
-
-          }
-
+          return newBreadOrder.NextStep();
         }
         else if (quantity > 1 && quantity % 2 != 0)
         {
@@ -91,41 +88,49 @@ namespace Bakery.Models
           Console.ForegroundColor = ConsoleColor.Green;
           TypeLine("The cost for " + newBreadOrder.Quantity + " loaves is $" + newBreadOrder.Cost);
           TypeLine("(You are paying for " + quantity + " loaves and getting " + ((quantity - 1) / 2) + " for free!)");
-          Console.ForegroundColor = ConsoleColor.Cyan;
-          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
-          TypeLine("Would you like to proceed to checkout or add pastries to your order? (choose checkout or add)");
-          string nextStep = Console.ReadLine();
-          if (nextStep == "checkout" || nextStep == "Checkout")
-          {
-            newBreadOrder.FinalBreadOrder();
-          }
-          else if (nextStep == "add" || nextStep == "Add")
-          {
-
-          }
-
+          return newBreadOrder.NextStep();
         }
         else
         {
-          Console.Clear();
-          Console.ForegroundColor = ConsoleColor.Red;
-          TypeLine("Sorry, we didn't catch that...");
-          System.Threading.Thread.Sleep(3000);
-          BreadOrder();
+          return "Sorry, we didn't catch that...";
         }
       }
 
-      public void FinalBreadOrder()
+      public string NextStep()
+      {
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
+        TypeLine("Would you like to proceed to checkout or add pastries to your order? (choose checkout or add)");
+        string nextStep = Console.ReadLine();
+        if (nextStep == "checkout" || nextStep == "Checkout")
+        {
+          return FinalBreadOrder();
+        }
+        else if (nextStep == "add" || nextStep == "Add")
+        {
+          return "Find a way to order pastries";
+        }
+        else
+        {
+          return "";
+        }
+      }
+      
+      public string FinalBreadOrder()
       {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Green;
         if (Quantity > 1)
         {
-          TypeLine("Your final order is " + Quantity + " loaves and your total cost is $" + Cost);
+          return "Your final order is " + Quantity + " loaves and your total cost is $" + Cost;
         }
         else if (Quantity == 1)
         {
-            TypeLine("Your final order is " + Quantity + " loaf and your total cost is $" + Cost);
+            return "Your final order is " + Quantity + " loaf and your total cost is $" + Cost;
+        }
+        else
+        {
+          return "You didn't order anything";
         }
       }
     }
@@ -137,25 +142,5 @@ namespace Bakery.Models
         TypeLine("Pastries then!");
       }
     }
-      public static void TypeLine(string input)
-      {
-        for (int i = 0; i < input.Length; i++)
-        {
-          Console.Write(input[i]);
-          System.Threading.Thread.Sleep(30);
-        }
-        Console.Write(Environment.NewLine);
-        Console.Write(Environment.NewLine);
-      }
-      public static void TypeLineFast(string input)
-      {
-        for (int i = 0; i < input.Length; i++)
-        {
-          Console.Write(input[i]);
-          System.Threading.Thread.Sleep(5);
-        }
-        Console.Write(Environment.NewLine);
-        Console.Write(Environment.NewLine);
-      }
   }
 }
