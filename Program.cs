@@ -7,8 +7,6 @@ namespace Bakery
 {
   public class Program
   {
-    public static string finalBreadOrder;
-    public static string finalPastryOrder;
     public static int totalCost = 0;
     public static List<string> allOrders = new List<string>(){};
     public static void Main()
@@ -50,7 +48,21 @@ namespace Bakery
       }
       else if (nextStep == "add" || nextStep == "Add")
       {
-        ;
+        Console.Clear();
+        Products.TypeLine("Bread or Pastry? (enter bread or pastry)");
+        string nextOrder = Console.ReadLine();
+        if (nextOrder == "bread" || nextOrder == "Bread")
+        {
+          string finalBreadOrder = Products.Bread.BreadOrder();
+          allOrders.Add(finalBreadOrder);
+          NextStep();
+        }
+        // else if (nextOrder == "pastry" || nextOrder == "Pastry")
+        // {
+        //   string finalPastryOrder = Products.Pastry.PastryOrder();
+        //   allOrders.Add(finalPastryOrder);
+        //   NextStep();
+        // }
       }
       else
       {
@@ -75,7 +87,8 @@ namespace Bakery
         Products.TypeLine(order);
       }
       string totalStr = totalCost.ToString();
-      Products.TypeLine(totalStr);
+      Console.ForegroundColor = ConsoleColor.Magenta;
+      Products.TypeLine("Your order total is: $" + totalStr);
     }
   }
 }

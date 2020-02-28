@@ -22,7 +22,7 @@ namespace Bakery.Models
       for (int i = 0; i < input.Length; i++)
       {
         Console.Write(input[i]);
-        System.Threading.Thread.Sleep(30);
+        System.Threading.Thread.Sleep(5);
       }
       Console.Write(Environment.NewLine);
       Console.Write(Environment.NewLine);
@@ -66,6 +66,7 @@ namespace Bakery.Models
           TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
           Console.ForegroundColor = ConsoleColor.Green;
           TypeLine("The cost for " + newBreadOrder.Quantity + " loaf is $" + newBreadOrder.Cost);
+          Program.totalCost += newBreadOrder.Cost;
           return newBreadOrder.FinalBreadOrder();
         }
         else if (quantity > 1 && quantity % 2 == 0)
@@ -77,6 +78,7 @@ namespace Bakery.Models
           Console.ForegroundColor = ConsoleColor.Green;
           TypeLine("The cost for " + newBreadOrder.Quantity + " loaves is $" + newBreadOrder.Cost);
           TypeLine("(You are paying for " + quantity + " loaves and getting " + (quantity / 2) + " for free)");
+          Program.totalCost += newBreadOrder.Cost;
           return newBreadOrder.FinalBreadOrder();
         }
         else if (quantity > 1 && quantity % 2 != 0)
@@ -102,11 +104,11 @@ namespace Bakery.Models
         Console.ForegroundColor = ConsoleColor.Green;
         if (Quantity > 1)
         {
-          return Quantity + " loaves with a total cost of $" + Cost;
+          return Quantity + " loaves with a cost of $" + Cost;
         }
         else if (Quantity == 1)
         {
-            return Quantity + " loaf with a total cost of $" + Cost;
+            return Quantity + " loaf with a cost of $" + Cost;
         }
         else
         {
