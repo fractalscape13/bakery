@@ -10,7 +10,7 @@ namespace Bakery.Models
     {
       Console.Clear();
       Console.ForegroundColor = ConsoleColor.DarkYellow;
-      TypeLineFast("▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫ ▫️");
+      TypeLineFast("▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫️ ▫ ▫️ ▫️ ▫ ▫️");
       TypeLine("Bonjour et Bienvenue au Boulangerie de Pierre!");
       TypeLine("Would you like to see our bread or pastry menu? (enter bread or pastry)");
       string response = Console.ReadLine();

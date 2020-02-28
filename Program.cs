@@ -14,15 +14,11 @@ namespace Bakery
       string response = Products.Welcome();
       if (response == "bread" || response == "Bread")
       {
-        string finalBreadOrder = Products.Bread.BreadOrder();
-        allOrders.Add(finalBreadOrder);
-        NextStep();
+        BreadMenu();
       }
       else if (response == "pastry" || response == "Pastry")
       {
-        string finalPastryOrder = Products.Pastry.PastryOrder();
-        allOrders.Add(finalPastryOrder);
-        NextStep();
+        PastryMenu();
       }
       else 
       {
@@ -54,24 +50,34 @@ namespace Bakery
         string nextOrder = Console.ReadLine();
         if (nextOrder == "bread" || nextOrder == "Bread")
         {
-          string finalBreadOrder = Products.Bread.BreadOrder();
-          allOrders.Add(finalBreadOrder);
-          NextStep();
+          BreadMenu();
         }
         else if (nextOrder == "pastry" || nextOrder == "Pastry")
         {
-          string finalPastryOrder = Products.Pastry.PastryOrder();
-          allOrders.Add(finalPastryOrder);
-          NextStep();
+          PastryMenu();
         }
       }
       else
       {
         Console.Clear();
-        Products.TypeLine("Something went wrong...");
+        Products.TypeLine("Sorry, something went wrong... Let's try again.");
         System.Threading.Thread.Sleep(4000);
         NextStep();
       }
+    }
+
+    public static void BreadMenu()
+    {
+      string finalBreadOrder = Products.Bread.BreadOrder();
+      allOrders.Add(finalBreadOrder);
+      NextStep();
+    }
+
+    public static void PastryMenu()
+    {
+      string finalPastryOrder = Products.Pastry.PastryOrder();
+      allOrders.Add(finalPastryOrder);
+      NextStep();
     }
 
     public static void FinalOrder()
