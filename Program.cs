@@ -8,7 +8,19 @@ namespace Bakery
   {
     public static void Main()
     {
-
+      string response = Products.Welcome();
+      if (response == "bread" || response == "Bread")
+      {
+        Products.Bread.ChooseBread();
+      }
+      else if (response == "pastry" || response == "Pastry")
+      {
+        Products.Pastry.ChoosePastry();
+      }
+      else 
+      {
+        Products.Welcome();
+      }
     }
   }
 }
