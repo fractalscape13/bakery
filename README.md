@@ -30,7 +30,7 @@ _Lets a user order bread and pastries and see the total order cost._
 
 ## Known Bugs
 
-_No known bugs at this time._
+_No known bugs_
 
 ## Support and contact details
 

@@ -57,45 +57,54 @@ namespace Bakery.Models
         TypeLine("Bread is $5 per loaf, & for multiple loaves it is buy 2, get 1 free.");
         TypeLine("How many loaves of bread would you like to purchase?");
         TypeLine("A free loaf will be added to every 2 loaves purchased (please enter a whole number):");
-        int quantity = int.Parse(Console.ReadLine());
-        if (quantity == 1)
+        int quantity = 0;
+        string quantityStr = Console.ReadLine();
+        bool result = int.TryParse(quantityStr, out quantity);
+        if (result)
         {
-          newBreadOrder.Cost = 5;
-          newBreadOrder.Quantity = quantity;
-          Console.Clear();
-          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
-          Console.ForegroundColor = ConsoleColor.Green;
-          TypeLine("The cost for " + newBreadOrder.Quantity + " loaf is $" + newBreadOrder.Cost);
-          Program.totalCost += newBreadOrder.Cost;
-          return newBreadOrder.FinalBreadOrder();
+          if (quantity == 1)
+          {
+            newBreadOrder.Cost = 5;
+            newBreadOrder.Quantity = quantity;
+            Console.Clear();
+            TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
+            Console.ForegroundColor = ConsoleColor.Green;
+            TypeLine("The cost for " + newBreadOrder.Quantity + " loaf is $" + newBreadOrder.Cost);
+            Program.totalCost += newBreadOrder.Cost;
+            return newBreadOrder.FinalBreadOrder();
+          }
+          else if (quantity > 1 && quantity % 2 == 0)
+          {
+            newBreadOrder.Cost = (quantity * 5);
+            newBreadOrder.Quantity = quantity + (quantity / 2);
+            Console.Clear();
+            TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
+            Console.ForegroundColor = ConsoleColor.Green;
+            TypeLine("The cost for " + newBreadOrder.Quantity + " loaves is $" + newBreadOrder.Cost);
+            TypeLine("(You are paying for " + quantity + " loaves and getting " + (quantity / 2) + " for free)");
+            Program.totalCost += newBreadOrder.Cost;
+            return newBreadOrder.FinalBreadOrder();
+          }
+          else if (quantity > 1 && quantity % 2 != 0)
+          {
+            newBreadOrder.Cost = (quantity * 5);
+            newBreadOrder.Quantity = quantity + ((quantity - 1) / 2);
+            Console.Clear();
+            TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
+            Console.ForegroundColor = ConsoleColor.Green;
+            TypeLine("The cost for " + newBreadOrder.Quantity + " loaves is $" + newBreadOrder.Cost);
+            TypeLine("(You are paying for " + quantity + " loaves and getting " + ((quantity - 1) / 2) + " for free!)");
+            Program.totalCost += newBreadOrder.Cost;
+            return newBreadOrder.FinalBreadOrder();
+          }
+          else
+          {
+            return "Sorry, your order didn't go through";
+          }
         }
-        else if (quantity > 1 && quantity % 2 == 0)
+        else 
         {
-          newBreadOrder.Cost = (quantity * 5);
-          newBreadOrder.Quantity = quantity + (quantity / 2);
-          Console.Clear();
-          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
-          Console.ForegroundColor = ConsoleColor.Green;
-          TypeLine("The cost for " + newBreadOrder.Quantity + " loaves is $" + newBreadOrder.Cost);
-          TypeLine("(You are paying for " + quantity + " loaves and getting " + (quantity / 2) + " for free)");
-          Program.totalCost += newBreadOrder.Cost;
-          return newBreadOrder.FinalBreadOrder();
-        }
-        else if (quantity > 1 && quantity % 2 != 0)
-        {
-          newBreadOrder.Cost = (quantity * 5);
-          newBreadOrder.Quantity = quantity + ((quantity - 1) / 2);
-          Console.Clear();
-          TypeLineFast("▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️▫️");
-          Console.ForegroundColor = ConsoleColor.Green;
-          TypeLine("The cost for " + newBreadOrder.Quantity + " loaves is $" + newBreadOrder.Cost);
-          TypeLine("(You are paying for " + quantity + " loaves and getting " + ((quantity - 1) / 2) + " for free!)");
-          Program.totalCost += newBreadOrder.Cost;
-          return newBreadOrder.FinalBreadOrder();
-        }
-        else
-        {
-          return "Sorry, we didn't catch that...";
+          return "Your order didn't go through, sorry.";
         }
       }
       
@@ -161,7 +170,7 @@ namespace Bakery.Models
         }
         else
         {
-          return "Sorry, we didn't catch that...";
+          return "Sorry, your order didn't go through";
         }      
       }
       public string FinalPastryOrder()
