@@ -56,12 +56,16 @@ namespace Bakery
         {
           PastryMenu();
         }
+        else {
+          Console.Clear();
+          Products.TypeLine("Sorry, that wasn't a valid input. Let's try again.");
+          NextStep();
+        }
       }
       else
       {
         Console.Clear();
-        Products.TypeLine("Sorry, something went wrong... Let's try again.");
-        System.Threading.Thread.Sleep(4000);
+        Products.TypeLine("Sorry, that wasn't a valid input. Let's try again.");
         NextStep();
       }
     }
